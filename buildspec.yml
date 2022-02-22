@@ -8,18 +8,17 @@ phases:
   install:
     run-as: root
     commands:
-    - pip install --upgrade pip
-    - pip install awscli
-    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID_PARAM
-    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_PARAM
-    - cat /etc/fedora-release
-    - # export release=RHEL
-    - # export release=AmazonLinux
-    - export release=fedora
-    - sudo dnf install -y dnf-plugins-core
-    - sudo dnf config-manager --add-repo https://rpm.release.hashicorp.com/$release/hashicorp.repo
-    - sudo dnf install -v terraform
-    - terraform -help
+     - sudo apt update
+     - sudo apt-get install build-essential
+     - sudo apt install git -y
+     - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+     - brew doctor
+     - brew install gcc
+     - brew tap hashicorp/tap
+     - brew install terraform
+     - terraform -help
+     - terraform init
   build:
    run-as: root
    commands:
