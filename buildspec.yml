@@ -3,13 +3,14 @@ run-as: root
 phases:
   install:
     commands:
-      - curl -s -qL -o terraform_install.zip https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
-      - unzip terraform_install.zip -d /usr/bin/
-      - chmod +x /usr/bin/terraform
+      - pip install --upgrade pip
+      - pip install boto3
+      - wget https://releases.hashicorp.com/terraform/0.10.4/terraform_0.10.4_linux_amd64.zip
+      - unzip terraform_0.10.4_linux_amd64.zip
+      - mv terraform /bin
+      - cd vpc
   build:
       commands:
-       - cd vpc
-       - pwd
        - terraform init
        - terraform plan
        - terraform apply -auto-approve
