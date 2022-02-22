@@ -10,8 +10,8 @@ phases:
     commands:
     - pip install --upgrade pip
     - pip install awscli
-    - aws configure set aws_access_key_id$AWS_ACCESS_KEY_ID_PARAM
-    - aws configure set aws_secret_access_key$AWS_SECRET_ACCESS_KEY_PARAM
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID_PARAM
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_PARAM
     - cat /etc/fedora-release
     - # export release=RHEL
     - # export release=AmazonLinux
