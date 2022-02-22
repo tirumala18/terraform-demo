@@ -3,22 +3,19 @@ run-as: root
 phases:
   install:
     run-as: root
+    runtime-versions:
+      python: 3.x
     commands:
      - sudo pip install boto3
      - wget https://releases.hashicorp.com/terraform/0.10.4/terraform_0.10.4_linux_amd64.zip
      - unzip terraform_0.10.4_linux_amd64.zip
      - sudo mv terraform /bin
      - rm terraform_0.10.4_linux_amd64.zip
-     - sudo apt update
-     - sudo apt-get install build-essential
-     - sudo apt install git -y
-     - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-     - brew doctor
-     - brew install gcc
-     - brew tap hashicorp/tap
-     - brew install terraform
-     - terraform -help
+     - apt-get update
+     - apt-cache search source
+     - apt-get install -y curl jq
+     - curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI | jq 'to_entries | [ .[] | select(.key | (contains("Expiration") or contains("RoleArn"))  | not) ] |  map(if .key == "AccessKeyId" then . + {"key":"AWS_ACCESS_KEY_ID"} else . end) | map(if .key == "SecretAccessKey" then . + {"key":"AWS_SECRET_ACCESS_KEY"} else . end) | map(if .key == "Token" then . + {"key":"AWS_SESSION_TOKEN"} else . end) | map("export \(.key)=\(.value)") | .[]' -r > /tmp/aws_cred_export.txt # work around https://github.com/hashicorp/terraform/issues/874
+     - cd vpc
      - terraform init
   build:
    run-as: root
