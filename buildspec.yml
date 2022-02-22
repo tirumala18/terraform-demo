@@ -1,0 +1,23 @@
+version: 0.2
+run-as: root
+phases:
+  install:
+    run-as: root
+    commands:
+    - cat /etc/fedora-release
+    - # export release=RHEL
+    - # export release=AmazonLinux
+    - export release=fedora
+    - sudo dnf install -y dnf-plugins-core
+    - sudo dnf config-manager --add-repo https://rpm.release.hashicorp.com/$release/hashicorp.repo
+    - sudo dnf install -v terraform
+    - terraform -help
+  build:
+   run-as: root
+   commands:
+    - terraform init
+    - terraform apply 
+    - terraform destroy
+artifacts:
+  files:
+    - '**/*'
