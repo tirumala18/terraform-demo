@@ -32,7 +32,7 @@ module "route_table" {
  igw_id = module.IGW.igw_id
  nat_id = module.NAT.nat_id
  subnet_id_public = module.subnets.pub_id
- subnet_id_private = module.subnets.pric_id
+ subnet_id_private = module.subnets.priv_id
  rt1_name = "rt1"
  rt2_name = "rt2"
 }
