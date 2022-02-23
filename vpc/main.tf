@@ -11,24 +11,24 @@ module "vpc" {
 }
 module "./subnet" {
   source  = ".subnet"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.VPC.vpc_id
   subnet_cidr = "10.0.1.0/24"
   subnet_cidr_priv = "10.0.2.0/24"
 }
 module "igw"{
   source = "./igw"
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.VPC.vpc_id
   name="ex-igw"
 }
 module "nat"{
   source = "./nat"
-  allocation_id = module.vpc.allocation_id
+  allocation_id = module.VPC.allocation_id
   subnet_id = module.subnet.pub_id
   name="ex-nat"
 }
 module "route_table" {
  source = "./route_tables" 
- vpc_id = module.vpc.vpc_id
+ vpc_id = module.VPC.vpc_id
  igw_id = module.igw.igw_id
  nat_id = module.nat.nat_id
  subnet_id_public = module.subnet.public_id
