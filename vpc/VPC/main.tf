@@ -13,6 +13,6 @@ resource "aws_eip" "ip" {
 output "vpc_id" {
     value = aws_vpc.vpc.id
 }
-output "alocation_id" {
+output "allocation_id" {
     value = aws_eip.ip.id
 }
