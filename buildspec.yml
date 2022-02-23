@@ -3,9 +3,12 @@ run-as: root
 phases:
   install:
     commands:
-      - curl -s -qL -o terraform_install.zip https://releases.hshicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
-      - unzip terraform_install.zip -d /usr/bin
-      - chmod +x /usr/bin/terraform
+      - sudo apt-get update -y
+      - sudo apt-get install wget unzip -y
+      - sudo wget https://releases.hashicorp.com/terraform/0.12.1.8/terraform_0.12.18_linux_amd64.zip
+      - sudo unzip terraform_0.12.18_linux_amd64.zip
+      - sudo mv terraform /usr/local/bin/
+      - terraform -v
      finally:
       - terraform --version
   build:
