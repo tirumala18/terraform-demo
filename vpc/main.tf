@@ -27,7 +27,7 @@ module "NAT"{
   name="ex-nat"
 }
 module "route_table" {
- source = "./routetables" 
+ source = "./routetable" 
  vpc_id = module.vpc.vpc_id
  igw_id = module.IGW.igw_id
  nat_id = module.NAT.nat_id
