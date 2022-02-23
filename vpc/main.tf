@@ -5,15 +5,15 @@ provider "aws" {
 }
 module "vpc" {
   source  = "./VPC"
-  vpc_cidr = "10.0.0.0/16"
+  vpc_cidr = "192.168.0.0/16"
   vpc_name = "ex-vpc"
   eip_name = "ex-eip"
 }
 module "subnets" {
   source  = "./subnet"
   vpc_id = module.vpc.vpc_id
-  subnet_cidr = "10.0.1.0/24"
-  subnet_cidr_priv = "10.0.2.0/24"
+  subnet_cidr = "192.168.1.0/24"
+  subnet_cidr_priv = "192.168.2.0/24"
 }
 module "IGW"{
   source = "./igw"
