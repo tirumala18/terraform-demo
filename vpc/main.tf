@@ -31,8 +31,8 @@ module "route_table" {
  vpc_id = module.vpc.vpc_id
  igw_id = module.IGW.igw_id
  nat_id = module.NAT.nat_id
- subnet_id_public = module.subnets.public_id
- subnet_id_private = module.subnets.private_id
+ subnet_id_public = module.subnets.pub_id
+ subnet_id_private = module.subnets.pric_id
  rt1_name = "rt1"
  rt2_name = "rt2"
 }
