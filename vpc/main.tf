@@ -40,6 +40,6 @@ module "ec2creation" {
  subnet_id = module.subnets.pub_id
  instance_ami = "ami-033b95fb8079dc481"
  instance_type = "t2.micro"
- instace_name = "ec2"
+ instance_name = "ec2"
      }
 
