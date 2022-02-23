@@ -1,7 +1,7 @@
 provider "aws" {
     region = "us-east-1"
-    access_key = "AKIA2PRCPUFGXQDHPGHG"
-    secret_key = "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"
+    access_key = "AKIA4YF22HNM23BL5TZH"
+    secret_key = "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"
 }
 module "vpc" {
   source  = "./VPC"
@@ -35,4 +35,11 @@ module "route_table" {
  rt1_name = "rt1"
  rt2_name = "rt2"
 }
+module "ec2creation" {
+ source = "./ec2"
+ subnet_id = module.subnets.pub_id
+ instance_ami = "ami-033b95fb8079dc481"
+ instance_type = "t2.micro"
+ instace_name = "ec2"
+     }
 
