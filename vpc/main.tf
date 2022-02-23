@@ -23,7 +23,7 @@ module "IGW"{
 module "NAT"{
   source = "./nat"
   allocation_id = module.vpc.allocation_id
-  subnet_id = module.subnets.pub_id
+  subnet_id = module.subnets.priv_id
   name="ex-nat"
 }
 module "route_table" {
