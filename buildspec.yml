@@ -10,9 +10,8 @@ phases:
       - sudo install terraform /usr/local/bin/
       - terraform -version
   build:
-      commands:
-        - cd vpc
-        - pwd
-       - terraform init
-       - terraform apply -auto-approve
+    commands:
+      - cd vpc
+      - terraform init
+      - terraform apply -auto-approve
       
