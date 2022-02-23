@@ -30,7 +30,6 @@ module "route_table" {
  source = "./routetable" 
  vpc_id = module.vpc.vpc_id
  igw_id = module.IGW.igw_id
- nat_id = module.NAT.nat_id
  subnet_id_public = module.subnets.pub_id
  subnet_id_private = module.subnets.priv_id
  rt1_name = "rt1"
