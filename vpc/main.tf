@@ -4,35 +4,35 @@ provider "aws" {
     secret_key = "1JrP6Y/ttf8Amnwq9f/Tp/UcbQdDavZIzQE6iRMb"
 }
 module "vpc" {
-  source  = ".vpc"
+  source  = "./VPC"
   vpc_cidr = "10.0.0.0/16"
   vpc_name = "ex-vpc"
   eip_name = "ex-eip"
 }
-module "./subnet" {
-  source  = ".subnet"
-  vpc_id = module.VPC.vpc_id
+module "subnets" {
+  source  = "./subnet"
+  vpc_id = module.vpc.vpc_id
   subnet_cidr = "10.0.1.0/24"
   subnet_cidr_priv = "10.0.2.0/24"
 }
-module "igw"{
+module "IGW"{
   source = "./igw"
-  vpc_id = module.VPC.vpc_id
+  vpc_id = module.vpc.vpc_id
   name="ex-igw"
 }
-module "nat"{
+module "NAT"{
   source = "./nat"
-  allocation_id = module.VPC.allocation_id
-  subnet_id = module.subnet.pub_id
+  allocation_id = module.vpc.allocation_id
+  subnet_id = module.subnets.pub_id
   name="ex-nat"
 }
 module "route_table" {
  source = "./route_tables" 
- vpc_id = module.VPC.vpc_id
- igw_id = module.igw.igw_id
- nat_id = module.nat.nat_id
- subnet_id_public = module.subnet.public_id
- subnet_id_private = module.subnet._idprivate
+ vpc_id = module.vpc.vpc_id
+ igw_id = module.IGW.igw_id
+ nat_id = module.NAT.nat_id
+ subnet_id_public = module.subnets.public_id
+ subnet_id_private = module.subnets.private_id
  rt1_name = "rt1"
  rt2_name = "rt2"
 }
