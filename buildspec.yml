@@ -3,10 +3,11 @@ run-as: root
 phases:
   install:
     commands:
-      - wget https://releases.hashicorp.com/terraform/0.12.1.8/terraform_0.12.18_linux_amd64.zip
-      - unzip terraform_0.12.18_linux_amd64.zip
-      - install terraform /usr/local/bin/
-      - terraform -version
+      - mkdir ~/bin
+      - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+      - unzip terraform_0.12.24_linux_amd64.zip
+      - mv terraform ~/bin
+      - terraform version
   build:
     commands:
       - cd vpc
