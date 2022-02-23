@@ -3,9 +3,11 @@ run-as: root
 phases:
   install:
     commands:
-      - wget https://releases.hashicorp.com/terraform/0.12.2/terraform_0.12.2_linux_amd64.zip
-      - unzip ./terraform_0.12.2_linux_amd64.zip -d /usr/local/bin
-      - terraform --version
+      - wget https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
+      - unzip ./terraform_0.13.1_linux_amd64.zip 
+      - echo $PATH
+      - cp terraform /usr/local/sbin
+      - terraform version
       - cd vpc
       
   build:
